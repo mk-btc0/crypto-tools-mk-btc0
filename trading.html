@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TradingView - mk-btc0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">⚡</div>
+                    <span>mk-btc0</span>
+                </div>
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="converter.html">Converter</a>
+                    <a href="trading.html" class="active">TradingView</a>
+                    <a href="https://github.com/mk-btc0" target="_blank">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>TradingView Charts</h1>
+            <p>Professional trading charts with advanced indicators</p>
+            <div class="developer">
+                <span>By Markuss Karpovs 4252</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="trading-section">
+        <div class="container">
+            <div class="chart-controls">
+                <div class="control-group">
+                    <label for="chartSymbol">Trading Pair:</label>
+                    <select id="chartSymbol" onchange="updateChart()">
+                        <option value="BINANCE:BTCUSDT">BTC/USDT</option>
+                        <option value="BINANCE:ETHUSDT">ETH/USDT</option>
+                        <option value="BINANCE:ADAUSDT">ADA/USDT</option>
+                        <option value="BINANCE:SOLUSDT">SOL/USDT</option>
+                        <option value="BINANCE:XRPUSDT">XRP/USDT</option>
+                        <option value="BINANCE:DOTUSDT">DOT/USDT</option>
+                        <option value="BINANCE:BNBUSDT">BNB/USDT</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="chartInterval">Timeframe:</label>
+                    <select id="chartInterval" onchange="updateChart()">
+                        <option value="1">1 Minute</option>
+                        <option value="5">5 Minutes</option>
+                        <option value="15">15 Minutes</option>
+                        <option value="60" selected>1 Hour</option>
+                        <option value="240">4 Hours</option>
+                        <option value="1D">1 Day</option>
+                        <option value="1W">1 Week</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="chartTheme">Theme:</label>
+                    <select id="chartTheme" onchange="updateChart()">
+                        <option value="dark" selected>Dark</option>
+                        <option value="light">Light</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="tradingview-chart">
+                    <div id="tradingview_chart"></div>
+                </div>
+                
+                <div class="chart-info">
+                    <div class="info-card">
+                        <h3>📊 Chart Features</h3>
+                        <ul>
+                            <li>Real-time price data</li>
+                            <li>Multiple timeframes</li>
+                            <li>Technical indicators</li>
+                            <li>Drawing tools</li>
+                            <li>Fullscreen mode</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>⚡ Indicators</h3>
+                        <ul>
+                            <li>RSI (Relative Strength Index)</li>
+                            <li>MACD (Moving Average Convergence Divergence)</li>
+                            <li>Bollinger Bands</li>
+                            <li>Volume analysis</li>
+                            <li>Stochastic RSI</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 mk-btc0 | Markuss Karpovs 4252</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script src="trading.js"></script>
+</body>
+</html>
