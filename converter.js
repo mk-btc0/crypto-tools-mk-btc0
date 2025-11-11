@@ -1,4 +1,3 @@
-// Currency converter functionality
 async function convertCurrency() {
     const amount = parseFloat(document.getElementById('amountInput').value);
     const fromCurrency = document.getElementById('fromCurrency').value;
