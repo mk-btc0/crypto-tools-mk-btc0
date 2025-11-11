@@ -399,6 +399,8 @@ footer {
     gap: 20px;
 }
 
+
+
 .info-card {
     background: var(--light);
     padding: 20px;
@@ -485,3 +487,4 @@ footer {
         padding: 15px;
     }
 }
+
