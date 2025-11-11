@@ -17,6 +17,7 @@ async function convertCurrency() {
         resultDiv.style.color = '#00ff88';
         return;
     }
+
     
     try {
         let rate = 1;
@@ -111,3 +112,4 @@ document.getElementById('toCurrency').addEventListener('change', function() {
 document.addEventListener('DOMContentLoaded', function() {
     convertCurrency();
 });
+
