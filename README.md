@@ -23,8 +23,8 @@ mk-btc0 Crypto Tools is a sleek, modern web application that provides essential 
 ## ✨ Live
 
 🔗 **Website:**  **https://mk-btc0.github.io/crypto-tools-mk-btc0/**
+🔗 **Presentation about project:**  **https://www.canva.com/design/DAG4a3PW3n0/onypaJNwIJ7r_1jlWwttow/edit?utm_content=DAG4a3PW3n0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton**
 🔗 **Link to certificates:**  **https://www.canva.com/design/DAG4Zo8YLiY/8uzxtz_4N7BjSCPEmK0g3w/edit?utm_content=DAG4Zo8YLiY&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton**
-
 
 ## 🛠️ Built With
 
