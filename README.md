@@ -49,22 +49,11 @@ mk-btc0 Crypto Tools is a sleek, modern web application that provides essential 
 
 ---
 
-## 🎨 Screenshots
-
-![Home Page](https://mk-btc0.github.io/crypto-tools-mk-btc0/screenshot1.png)  
-*Home page with cyberpunk theme and currency converter*
-
-![Trading Chart](https://mk-btc0.github.io/crypto-tools-mk-btc0/screenshot2.png)  
-*Advanced TradingView charts integration*
-
----
 
 ## 📱 Responsive Design
 
 Works seamlessly on:  
 - Desktop 💻  
-- Tablet 📱  
-- Mobile 📲  
 
 ---
 
