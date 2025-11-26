@@ -112,4 +112,3 @@ document.getElementById('toCurrency').addEventListener('change', function() {
 document.addEventListener('DOMContentLoaded', function() {
     convertCurrency();
 });
-
