@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Crypto Chat - mk-btc0</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .chat-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            height: 700px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .chat-header h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.8em;
+        }
+
+        .status {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 15px;
+            border-radius: 18px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background: #e3f2fd;
+            color: #333;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message-time {
+            font-size: 0.7em;
+            opacity: 0.7;
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+
+        #userInput {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        #userInput:focus {
+            border-color: #007bff;
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 18px;
+            border-bottom-left-radius: 5px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .typing-dots span {
+            width: 6px;
+            height: 6px;
+            background: #666;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-5px); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">⚡</div>
+                    <span>mk-btc0</span>
+                </div>
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="converter.html">Converter</a>
+                    <a href="trading.html">TradingView</a>
+                    <a href="news.html">Crypto News</a>
+                    <a href="ai-chat.html" class="active">AI Chat Bot</a>
+                    <a href="https://github.com/mk-btc0" target="_blank">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <h1>Crypto AI Assistant</h1>
+                    <div class="status">Online</div>
+                </div>
+                
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot-message">
+                        👋 Hello! I'm your crypto AI assistant. Ask me about:<br>
+                        • Bitcoin & Ethereum<br>
+                        • Trading strategies<br>
+                        • Market analysis<br>
+                        • Crypto basics
+                        <div class="message-time" id="initialTime">Just now</div>
+                    </div>
+                </div>
+
+                <div class="typing-indicator" id="typingIndicator">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    AI is typing...
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="userInput" 
+                            placeholder="Ask about Bitcoin, Ethereum, trading..." 
+                            autocomplete="off"
+                        >
+                        <button id="sendButton" class="send-btn">Send ►</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 mk-btc0 | Markuss Karpovs 4252</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById('chatMessages');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            const typingIndicator = document.getElementById('typingIndicator');
+
+            // БАЗА ЗНАНИЙ - умные ответы
+            const knowledgeBase = {
+                // Приветствия
+                'hello': "Hello! 👋 I'm your crypto assistant. How can I help you with Bitcoin, Ethereum, or trading today?",
+                'hi': "Hi there! Ready to discuss cryptocurrency? Ask me anything!",
+                'how are you': "I'm doing great! Ready to analyze crypto markets. What's on your mind?",
+                
+                // Bitcoin
+                'bitcoin': "Bitcoin (BTC) is digital gold - the first cryptocurrency with limited supply (21M coins). It's decentralized and secure.",
+                'what is bitcoin': "Bitcoin is a decentralized digital currency that operates without central authority. Created in 2009 by Satoshi Nakamoto.",
+                'bitcoin price': "Bitcoin price is volatile. For live prices check CoinMarketCap. Currently trading around $[current price] range.",
+                'buy bitcoin': "You can buy Bitcoin on exchanges like Binance, Coinbase, or Kraken. Always use secure wallets to store it.",
+                'bitcoin future': "Many experts believe Bitcoin has long-term potential as store of value and hedge against inflation.",
+                
+                // Ethereum
+                'ethereum': "Ethereum (ETH) is a programmable blockchain for smart contracts and dApps. It's like a global computer.",
+                'what is ethereum': "Ethereum is a decentralized platform that runs smart contracts. It enables DeFi, NFTs, and much more.",
+                'eth price': "Ethereum price follows market trends. Check live charts on TradingView for current ETH/USD rates.",
+                'ethereum vs bitcoin': "Bitcoin is digital gold (store of value), Ethereum is a programmable platform (smart contracts).",
+                
+                // Trading
+                'trading': "Successful trading requires: 1) Risk management 2) Technical analysis 3) Emotional control 4) Continuous learning",
+                'how to trade': "Start with education, use demo accounts, risk small amounts, and learn technical analysis basics.",
+                'trading strategy': "Popular strategies: Swing trading, day trading, position trading. Find what fits your personality.",
+                'best indicators': "RSI (momentum), MACD (trend), Bollinger Bands (volatility), Moving Averages (support/resistance).",
+                
+                // Рынок
+                'market': "Crypto markets are highly volatile. Current sentiment: [Neutral]. Always do your own research before investing.",
+                'bull market': "Bull markets feature rising prices, high optimism. Good for buying early and holding quality projects.",
+                'bear market': "Bear markets have falling prices. Good for accumulating quality assets at discounts.",
+                
+                // Безопасность
+                'wallet': "Use hardware wallets (Ledger, Trezor) for large amounts. Software wallets for small daily use.",
+                'security': "Enable 2FA, use strong passwords, never share private keys, beware of phishing sites.",
+                
+                // Общее
+                'what is crypto': "Cryptocurrency is digital money using cryptography for security. Key features: decentralized, transparent, secure.",
+                'how to start': "Start by: 1) Learning basics 2) Choosing reputable exchange 3) Starting small 4) Using secure wallets",
+                'altcoins': "Popular altcoins: Cardano (ADA), Solana (SOL), Polygon (MATIC). Research fundamentals before investing."
+            };
+
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message === '') return;
+
+                addMessage(message, 'user');
+                userInput.value = '';
+                showTypingIndicator();
+
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    const aiResponse = findBestResponse(message);
+                    addMessage(aiResponse, 'bot');
+                }, 800);
+            }
+
+            function findBestResponse(userMessage) {
+                const lowerMessage = userMessage.toLowerCase();
+                
+                // Ищем точное совпадение в базе знаний
+                for (const [key, response] of Object.entries(knowledgeBase)) {
+                    if (lowerMessage.includes(key)) {
+                        return response;
+                    }
+                }
+                
+                // Если не нашли - умный ответ по категориям
+                if (lowerMessage.includes('bitcoin') || lowerMessage.includes('btc')) {
+                    return "Bitcoin is the original cryptocurrency with strong network effects. Its limited supply makes it attractive as digital gold.";
+                }
+                if (lowerMessage.includes('ethereum') || lowerMessage.includes('eth')) {
+                    return "Ethereum enables smart contracts and decentralized applications. The merge to Proof-of-Stake made it more efficient.";
+                }
+                if (lowerMessage.includes('trade') || lowerMessage.includes('buy') || lowerMessage.includes('sell')) {
+                    return "For trading, always use stop-loss orders and risk management. Never invest more than you can afford to lose.";
+                }
+                if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('value')) {
+                    return "Crypto prices are highly volatile. Check real-time prices on CoinGecko or your preferred exchange for accurate data.";
+                }
+                
+                // Дефолтный ответ
+                return "I specialize in cryptocurrency topics. Ask me about Bitcoin, Ethereum, trading strategies, market analysis, or crypto security!";
+            }
+
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}-message`;
+                messageDiv.innerHTML = `${text}<div class="message-time">${getCurrentTime()}</div>`;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function showTypingIndicator() {
+                typingIndicator.style.display = 'block';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function hideTypingIndicator() {
+                typingIndicator.style.display = 'none';
+            }
+
+            function getCurrentTime() {
+                const now = new Date();
+                return now.getHours().toString().padStart(2, '0') + ':' + 
+                       now.getMinutes().toString().padStart(2, '0');
+            }
+
+            // Обработчики событий
+            sendButton.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') sendMessage();
+            });
+            userInput.focus();
+        });
+    </script>
+</body>
+</html>
