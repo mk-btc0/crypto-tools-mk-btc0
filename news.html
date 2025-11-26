@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto News - mk-btc0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">⚡</div>
+                    <span>mk-btc0</span>
+                </div>
+                <nav>
+                    <a href="index.html">Home</a>
+                    <a href="converter.html">Converter</a>
+                    <a href="trading.html">TradingView</a>
+                    <a href="news.html" class="active">Crypto News</a>
+                    <a href="ai-chat.html">AI Chat Bot</a>
+                    <a href="https://github.com/mk-btc0" target="_blank">GitHub</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Crypto News Feed</h1>
+            <p>Latest cryptocurrency news with market sentiment analysis</p>
+            <div class="developer">
+                <span>By Markuss Karpovs 4252</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="container">
+            <div class="news-controls">
+                <div class="control-group">
+                    <label for="newsFilter">Filter by Sentiment:</label>
+                    <select id="newsFilter" onchange="filterNews()">
+                        <option value="all">All News</option>
+                        <option value="positive">Positive 🟢</option>
+                        <option value="negative">Negative 🔴</option>
+                        <option value="neutral">Neutral ⚪</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="currencyFilter">Filter by Coin:</label>
+                    <select id="currencyFilter" onchange="filterNews()">
+                        <option value="all">All Coins</option>
+                        <option value="BTC">Bitcoin</option>
+                        <option value="ETH">Ethereum</option>
+                        <option value="SOL">Solana</option>
+                        <option value="BNB">BNB</option>
+                        <option value="ADA">Cardano</option>
+                        <option value="XRP">Ripple</option>
+                    </select>
+                </div>
+
+                <button onclick="loadNews()" class="btn btn-primary">🔄 Refresh News</button>
+            </div>
+
+            <div class="news-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalNews">0</div>
+                    <div class="stat-label">Total News</div>
+                </div>
+                <div class="stat-card positive">
+                    <div class="stat-value" id="positiveNews">0</div>
+                    <div class="stat-label">Positive</div>
+                </div>
+                <div class="stat-card negative">
+                    <div class="stat-value" id="negativeNews">0</div>
+                    <div class="stat-label">Negative</div>
+                </div>
+                <div class="stat-card neutral">
+                    <div class="stat-value" id="neutralNews">0</div>
+                    <div class="stat-label">Neutral</div>
+                </div>
+            </div>
+
+            <div id="newsContainer" class="news-container">
+                <div class="loading">Loading latest crypto news...</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 mk-btc0 | Markuss Karpovs 4252</p>
+            <p class="api-credit">News powered by CryptoPanic API</p>
+        </div>
+    </footer>
+
+    <script src="news.js"></script>
+</body>
+</html>z
