@@ -3,69 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mk-btc0 | Crypto Tools</title>
+    <title>mk-btc0 | Programmer's Crypto Tools</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
 </head>
 <body>
-    <header>
+    <div class="scanline"></div>
+    
+    <!-- Header -->
+    <header class="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">⚡</div>
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
                     <span>mk-btc0</span>
-                </div>
+                </a>
+                
                 <nav>
-                    <a href="index.html" class="active">Home</a>
-                    <a href="converter.html">Converter</a>
-                    <a href="trading.html">TradingView</a>
-                    <a href="news.html">Crypto News</a>
-                    <a href="ai-chat.html">AI Chat Bot</a>
-                    <a href="https://github.com/mk-btc0" target="_blank">GitHub</a>
+                    <a href="index.html" class="active">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="converter.html">
+                        <i class="fas fa-exchange-alt"></i> Converter
+                    </a>
+                    <a href="trading.html">
+                        <i class="fas fa-chart-line"></i> Charts
+                    </a>
+                    <a href="news.html">
+                        <i class="fas fa-newspaper"></i> News
+                    </a>
+                    <a href="https://github.com/mk-btc0" target="_blank" class="github-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
                 </nav>
             </div>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>mk-btc0 Crypto Tools</h1>
-            <p>Professional cryptocurrency utilities</p>
-            <div class="developer">
-                <span>By Markuss Karpovs 4252</span>
+            <h1>Programmer's Crypto Tools</h1>
+            <p>Clean, fast, and functional cryptocurrency utilities for developers</p>
+            
+            <div class="developer-badge">
+                <i class="fas fa-terminal"></i> Developed by Markuss Karpovs 4252
             </div>
             
             <div class="tools-grid">
                 <a href="converter.html" class="tool-card">
-                    <div class="tool-icon">🔄</div>
+                    <div class="tool-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
                     <h3>Currency Converter</h3>
-                    <p>Convert between crypto and fiat</p>
+                    <p>Real-time conversion between cryptocurrencies and fiat currencies</p>
                 </a>
                 
                 <a href="trading.html" class="tool-card">
-                    <div class="tool-icon">📊</div>
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
                     <h3>Trading Charts</h3>
-                    <p>Advanced TradingView charts</p>
+                    <p>Advanced TradingView charts with technical analysis tools</p>
                 </a>
-
+                
                 <a href="news.html" class="tool-card">
-                    <div class="tool-icon">📰</div>
+                    <div class="tool-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
                     <h3>Crypto News</h3>
-                    <p>Latest cryptocurrency news</p>
-                </a>
-
-                <a href="ai-chat.html" class="tool-card">
-                    <div class="tool-icon">🤖</div>
-                    <h3>AI Chat Bot</h3>
-                    <p>Advanced crypto trading assistant</p>
+                    <p>Latest market news with sentiment analysis and filtering</p>
                 </a>
             </div>
         </div>
     </section>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 mk-btc0 | Markuss Karpovs 4252</p>
+            <div class="footer-content">
+                <p>&copy; 2024 <span class="footer-highlight">mk-btc0</span> Crypto Tools</p>
+                <p>Built for developers, by developers</p>
+                <p>Clean code, smooth animations, maximum functionality</p>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // Simple market data for homepage
+        async function loadMarketData() {
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana&vs_currencies=usd&include_24h_change=true');
+                const data = await response.json();
+                
+                // You can add market widgets here if needed
+                console.log('Market data loaded:', data);
+                
+            } catch (error) {
+                console.log('Market data loading skipped:', error);
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMarketData();
+            
+            // Add typing effect to hero text
+            const heroText = document.querySelector('.hero p');
+            const originalText = heroText.textContent;
+            heroText.textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    heroText.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 30);
+                }
+            };
+            
+            setTimeout(typeWriter, 1000);
+        });
+    </script>
 </body>
 </html>
