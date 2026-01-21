@@ -5,95 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto News - mk-btc0</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📰</text></svg>">
 </head>
 <body>
-    <header>
+    <div class="scanline"></div>
+    
+    <!-- Header -->
+    <header class="header">
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">⚡</div>
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
                     <span>mk-btc0</span>
-                </div>
+                </a>
+                
                 <nav>
-                    <a href="index.html">Home</a>
-                    <a href="converter.html">Converter</a>
-                    <a href="trading.html">TradingView</a>
-                    <a href="news.html" class="active">Crypto News</a>
-                    <a href="ai-chat.html">AI Chat Bot</a>
-                    <a href="https://github.com/mk-btc0" target="_blank">GitHub</a>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a href="converter.html">
+                        <i class="fas fa-exchange-alt"></i> Converter
+                    </a>
+                    <a href="trading.html">
+                        <i class="fas fa-chart-line"></i> Charts
+                    </a>
+                    <a href="news.html" class="active">
+                        <i class="fas fa-newspaper"></i> News
+                    </a>
+                    <a href="https://github.com/mk-btc0" target="_blank" class="github-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Crypto News Feed</h1>
-            <p>Latest cryptocurrency news with market sentiment analysis</p>
-            <div class="developer">
-                <span>By Markuss Karpovs 4252</span>
-            </div>
-        </div>
-    </section>
-
+    <!-- News Section -->
     <section class="news-section">
         <div class="container">
-            <div class="news-controls">
-                <div class="control-group">
-                    <label for="newsFilter">Filter by Sentiment:</label>
-                    <select id="newsFilter" onchange="filterNews()">
-                        <option value="all">All News</option>
-                        <option value="positive">Positive 🟢</option>
-                        <option value="negative">Negative 🔴</option>
-                        <option value="neutral">Neutral ⚪</option>
-                    </select>
+            <div class="hero">
+                <h1>Crypto News</h1>
+                <p>Latest cryptocurrency news with market sentiment analysis</p>
+                <div class="developer-badge">
+                    <i class="fas fa-newspaper"></i> Real-time Updates
                 </div>
-                
-                <div class="control-group">
-                    <label for="currencyFilter">Filter by Coin:</label>
-                    <select id="currencyFilter" onchange="filterNews()">
-                        <option value="all">All Coins</option>
-                        <option value="BTC">Bitcoin</option>
-                        <option value="ETH">Ethereum</option>
-                        <option value="SOL">Solana</option>
-                        <option value="BNB">BNB</option>
-                        <option value="ADA">Cardano</option>
-                        <option value="XRP">Ripple</option>
-                    </select>
-                </div>
-
-                <button onclick="loadNews()" class="btn btn-primary">🔄 Refresh News</button>
             </div>
+            
+            <!-- Controls -->
+            <div class="news-controls">
+                <select id="newsFilter" onchange="filterNews()" class="news-select">
+                    <option value="all">All Sentiment</option>
+                    <option value="positive">Positive 🟢</option>
+                    <option value="negative">Negative 🔴</option>
+                    <option value="neutral">Neutral ⚪</option>
+                </select>
+                
+                <select id="currencyFilter" onchange="filterNews()" class="news-select">
+                    <option value="all">All Coins</option>
+                    <option value="BTC">Bitcoin (BTC)</option>
+                    <option value="ETH">Ethereum (ETH)</option>
+                    <option value="BNB">BNB</option>
+                    <option value="SOL">Solana (SOL)</option>
+                    <option value="ADA">Cardano (ADA)</option>
+                    <option value="XRP">Ripple (XRP)</option>
+                    <option value="DOT">Polkadot (DOT)</option>
+                </select>
 
+                <button onclick="loadNews()" class="refresh-btn">
+                    <i class="fas fa-redo"></i> Refresh News
+                </button>
+            </div>
+            
+            <!-- Stats -->
             <div class="news-stats">
                 <div class="stat-card">
                     <div class="stat-value" id="totalNews">0</div>
                     <div class="stat-label">Total News</div>
                 </div>
-                <div class="stat-card positive">
+                <div class="stat-card stat-positive">
                     <div class="stat-value" id="positiveNews">0</div>
                     <div class="stat-label">Positive</div>
                 </div>
-                <div class="stat-card negative">
+                <div class="stat-card stat-negative">
                     <div class="stat-value" id="negativeNews">0</div>
                     <div class="stat-label">Negative</div>
                 </div>
-                <div class="stat-card neutral">
+                <div class="stat-card stat-neutral">
                     <div class="stat-value" id="neutralNews">0</div>
                     <div class="stat-label">Neutral</div>
                 </div>
             </div>
-
+            
+            <!-- News Container -->
             <div id="newsContainer" class="news-container">
-                <div class="loading">Loading latest crypto news...</div>
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i> Loading latest crypto news...
+                </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 mk-btc0 | Markuss Karpovs 4252</p>
-            <p class="api-credit">News powered by CryptoPanic API</p>
+            <div class="footer-content">
+                <p>&copy; 2024 <span class="footer-highlight">mk-btc0</span> Crypto Tools</p>
+                <p>News powered by multiple reliable sources</p>
+                <p>Sentiment analysis updated in real-time</p>
+            </div>
         </div>
     </footer>
 
